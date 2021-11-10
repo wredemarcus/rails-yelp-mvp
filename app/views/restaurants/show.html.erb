@@ -1,0 +1,26 @@
+<div class="container">
+  <h1> <%= @restaurant.name %> </h1>
+  <div class="info flex">
+    <p>Cuisine: <%= @restaurant.category %> </p>
+    <p>Location: <%= @restaurant.address %> </p>
+    <p>Contact: <%= @restaurant.phone_number || 'No contact info existing' %> </p>
+  </div class="info flex">
+
+  <div class="reviews-container">
+    <% @restaurant.reviews.each do |review| %>
+    <div class="review">
+      <%= review.content %>
+      <p> Rating: <%= review.rating %> </p>
+    </div>
+    <% end %>
+  </div>
+
+  <h4> Add a review for <%= @restaurant.name %> 📝 </h4>
+  <%= simple_form_for([@restaurant, @review]) do |f|%>
+    <%= f.input :content%>
+    <%= f.input :rating%>
+    <%= f.submit "Submit review", class: "btn btn-success" %>
+  <% end %>
+
+  <%= link_to 'Get back', restaurants_path, class: 'btn'%>
+</div>
