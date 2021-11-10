@@ -8,7 +8,7 @@
 
 require 'faker'
 
-category = %w[Chinese Italian Japanese French Belgian]
+category = %w[chinese italian japanese french belgian]
 
 20.times do
   restaurant = Restaurant.new
@@ -16,7 +16,7 @@ category = %w[Chinese Italian Japanese French Belgian]
   restaurant.address = Faker::Address.city
   restaurant.phone_number = Faker::PhoneNumber.cell_phone_in_e164
   restaurant.category = category.sample
-  restaurant.save
+  restaurant.save!
   rand(3..10).times do
     review = Review.new
     review.restaurant = restaurant

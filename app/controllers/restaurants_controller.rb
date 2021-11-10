@@ -13,9 +13,9 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    restaurant = Restaurant.new(strong_params)
-    if restaurant.save
-      redirect_to restaurant_path(restaurant)
+    @restaurant = Restaurant.new(strong_params)
+    if @restaurant.save
+      redirect_to restaurant_path(@restaurant)
     else
       render :new
     end
@@ -24,6 +24,6 @@ class RestaurantsController < ApplicationController
   private
 
   def strong_params
-    params.require(:restaurant).permit(:name, :address, :category)
+    params.require(:restaurant).permit(:name, :address, :category, :phone_number)
   end
 end
